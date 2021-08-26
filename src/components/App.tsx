@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
@@ -11,8 +11,8 @@ const App: React.FC = () => {
   const [labels, setLabels] = useState<Array<string> | null>(null);
   const [name, setName] = useState("react");
   const [owner, setOwner] = useState("Facebook");
-  const [order, setOrder] = useState(OrderDirection.Asc);
-  const [orderType, setOrderType] = useState(false);
+  const [order, setOrder] = useState(OrderDirection.Desc);
+  const [orderType, setOrderType] = useState(true);
   const [textAuthor, setTextAuthor] = useState("");
   const [textLabel, setTextLabel] = useState("");
   const [textName, setTextName] = useState<string>("");
@@ -31,10 +31,10 @@ const App: React.FC = () => {
 
   const handleDirection = () => {
     if (order === "ASC") {
-      setOrderType(true);
+      setOrderType(false);
       setOrder(OrderDirection.Desc);
     } else {
-      setOrderType(false);
+      setOrderType(true);
       setOrder(OrderDirection.Asc);
     }
   };

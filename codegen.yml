@@ -1,7 +1,7 @@
 schema:
   - "https://api.github.com/graphql":
       headers:
-        Authorization: "Bearer "
+        Authorization: "Bearer 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"
 documents: "src/components/**/*.{ts,tsx}"
 generates:
   src/generated/graphql.tsx:
