@@ -14,6 +14,8 @@ const cache = new InMemoryCache({});
 
 const GITHUB_BASE_URL = "https://api.github.com/graphql";
 
+console.log(process.env.GITHUB_SECRET_KEY);
+
 const httplink = new HttpLink({
   uri: GITHUB_BASE_URL,
   headers: {

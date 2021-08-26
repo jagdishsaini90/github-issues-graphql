@@ -31,10 +31,10 @@ const App: React.FC = () => {
 
   const handleDirection = () => {
     if (order === "ASC") {
-      setOrderType(false);
+      setOrderType(true);
       setOrder(OrderDirection.Desc);
     } else {
-      setOrderType(true);
+      setOrderType(false);
       setOrder(OrderDirection.Asc);
     }
   };
@@ -188,7 +188,7 @@ const App: React.FC = () => {
           </Button>
         </form>
         <Button
-          startIcon={orderType ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
+          startIcon={orderType ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
           variant="outlined"
           style={{
             backgroundColor: "white",
