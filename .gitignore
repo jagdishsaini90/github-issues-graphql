@@ -25,4 +25,4 @@ yarn-error.log*
 .env
 
 /src/config.ts
-.codegen.yml
+codegen.yml
