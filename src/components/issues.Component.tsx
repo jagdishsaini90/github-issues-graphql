@@ -26,7 +26,7 @@ const IssueCard: React.FC<Props> = ({ title, login, labels, date }: Props) => {
     "Dec",
   ];
   return (
-    <div className="issue">
+    <div style={{ padding: "20px 30px" }} className="issue">
       <div className="issue__heading">
         <AlbumIcon
           style={{

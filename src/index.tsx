@@ -1,4 +1,5 @@
 import React from "react";
+import dotenv from "dotenv";
 import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient } from "apollo-client";
@@ -9,12 +10,11 @@ import { ApolloLink } from "apollo-link";
 import App from "./components/App";
 import { Config } from "./config";
 import "./index.css";
+dotenv.config();
 
 const cache = new InMemoryCache({});
 
 const GITHUB_BASE_URL = "https://api.github.com/graphql";
-
-console.log(process.env.GITHUB_SECRET_KEY);
 
 const httplink = new HttpLink({
   uri: GITHUB_BASE_URL,

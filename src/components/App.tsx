@@ -5,8 +5,9 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { OrderDirection, useGetissuesQuery } from "../generated/graphql";
 import IssueCard from "./issues.Component";
+import "./App.css";
 
-const App: React.FC = () => {
+const App: any = () => {
   const [author, setAuthor] = useState<string | null>(null);
   const [labels, setLabels] = useState<Array<string> | null>(null);
   const [name, setName] = useState("react");
@@ -15,8 +16,6 @@ const App: React.FC = () => {
   const [orderType, setOrderType] = useState(true);
   const [textAuthor, setTextAuthor] = useState("");
   const [textLabel, setTextLabel] = useState("");
-  const [textName, setTextName] = useState<string>("");
-  const [textOwner, setTextOwner] = useState<string>("");
 
   const { error, data, loading } = useGetissuesQuery({
     variables: {
@@ -39,25 +38,8 @@ const App: React.FC = () => {
     }
   };
   return (
-    <div
-      style={{
-        width: "95%",
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          height: "70px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+    <div className="container">
+      <div className="main">
         <form
           style={{
             width: "40%",
@@ -65,42 +47,26 @@ const App: React.FC = () => {
           }}
           onSubmit={(e) => {
             e.preventDefault();
-            console.log(e.currentTarget.name);
-            if (textName !== "" && textOwner !== "") {
-              setName(textName);
-              setOwner(textOwner);
-            }
           }}
         >
           <input
             type="text"
             placeholder="enter repository name"
-            value={textName}
+            value={name}
             required
-            onChange={(e) => setTextName(e.target.value)}
-            style={{
-              width: "100%",
-              height: "40px",
-              paddingLeft: "10px",
-              borderRadius: "10px",
-              color: "white",
-              backgroundColor: "transparent",
-              marginRight: "10px",
-            }}
+            onChange={(e: {
+              target: { value: React.SetStateAction<string> };
+            }) => setName(e.target.value)}
+            className="input"
           />
           <input
             type="text"
             placeholder="enter repository owner"
-            value={textOwner}
-            onChange={(e) => setTextOwner(e.target.value)}
-            style={{
-              width: "100%",
-              height: "40px",
-              paddingLeft: "10px",
-              borderRadius: "10px",
-              color: "white",
-              backgroundColor: "transparent",
-            }}
+            value={owner}
+            onChange={(e: {
+              target: { value: React.SetStateAction<string> };
+            }) => setOwner(e.target.value)}
+            className="input input-2"
           />
           <Button
             type="submit"
@@ -131,7 +97,6 @@ const App: React.FC = () => {
           }}
           onSubmit={(e) => {
             e.preventDefault();
-            console.log(e.currentTarget.name);
             if (textAuthor === "" && textLabel === "") {
               setAuthor(null);
               setLabels(null);
@@ -151,30 +116,19 @@ const App: React.FC = () => {
             type="text"
             placeholder="search by author"
             value={textAuthor}
-            onChange={(e) => setTextAuthor(e.target.value)}
-            style={{
-              width: "100%",
-              height: "40px",
-              paddingLeft: "10px",
-              borderRadius: "10px",
-              color: "white",
-              backgroundColor: "transparent",
-              marginRight: "10px",
-            }}
+            onChange={(e: {
+              target: { value: React.SetStateAction<string> };
+            }) => setTextAuthor(e.target.value)}
+            className="input input-2"
           />
           <input
             type="text"
             placeholder="search by label"
             value={textLabel}
-            onChange={(e) => setTextLabel(e.target.value)}
-            style={{
-              width: "100%",
-              height: "40px",
-              paddingLeft: "10px",
-              borderRadius: "10px",
-              color: "white",
-              backgroundColor: "transparent",
-            }}
+            onChange={(e: {
+              target: { value: React.SetStateAction<string> };
+            }) => setTextLabel(e.target.value)}
+            className="input"
           />
           <Button
             type="submit"
@@ -214,7 +168,7 @@ const App: React.FC = () => {
           <CircularProgress />
         </div>
       ) : (
-        <ul>
+        <ul style={{ width: "90%" }}>
           {data?.repository?.issues.nodes &&
           data?.repository?.issues.nodes.length === 0 ? (
             <h1
@@ -227,7 +181,14 @@ const App: React.FC = () => {
           ) : null}
           {data?.repository?.issues.nodes && (
             <div>
-              <h3 style={{ color: "white", fontFamily: "cursive" }}>
+              <h3
+                style={{
+                  color: "white",
+                  fontFamily: "cursive",
+                  padding: "20px 30px",
+                  marginTop: "50px",
+                }}
+              >
                 {data?.repository?.issues.totalCount} Issues found in repository
                 of {name} by {owner}
               </h3>

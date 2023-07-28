@@ -1,3 +1,3 @@
 export const Config = {
-  GITHUB_TOKEN_SECRET: "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",
+  GITHUB_TOKEN_SECRET: "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",
 };
