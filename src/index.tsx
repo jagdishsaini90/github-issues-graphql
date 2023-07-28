@@ -8,18 +8,18 @@ import { HttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
 import App from "./components/App";
-import { Config } from "./config";
 import "./index.css";
 dotenv.config();
 
 const cache = new InMemoryCache({});
 
 const GITHUB_BASE_URL = "https://api.github.com/graphql";
+const token = process.env.REACT_APP_GITHUB_TOKEN_SECRET!;
 
 const httplink = new HttpLink({
   uri: GITHUB_BASE_URL,
   headers: {
-    authorization: `Bearer ${Config.GITHUB_TOKEN_SECRET}`,
+    authorization: `Bearer ${token}`,
   },
 });
 
